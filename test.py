@@ -100,7 +100,6 @@ def applyFileTexture(fileTextureName):
 
     mc.setAttr('file1.fileTextureName', filePath, type='string')
     mc.connectAttr('file1.outColor', 'sphere_uber.diffuseColor', force=True)
-
 # RPRUberMaterial
 def applyRPRUberMaterial(node):
     if mc.objExists(node):
@@ -114,7 +113,7 @@ def applyRPRUberMaterial(node):
 createIBLLight('iblback.hdr', 1000)
 
 createIESLight('comet.ies')
-# type 1 - spot
+# (0:area, 1:spot, 2:point, 3:directed)
 createPhysicalLight(1)
 
 applyRPRUberMaterial('sphere')
