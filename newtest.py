@@ -10,7 +10,7 @@ mc.scale(5, 5, 5, torus)
 mc.createNode( 'transform', n='RPRPhysicalLightTop' )
 phLightTop = mc.createNode('RPRPhysicalLight', n='RPRPhysicalLightShapeTop', p='RPRPhysicalLightTop')
 
-mc.move(0, 25, 0, phLightTop)
+mc.move(0, 24, 0, phLightTop)
 mc.rotate(-90, 0, 0, phLightTop)
 mc.scale(5, 5, 1, phLightTop)
 
