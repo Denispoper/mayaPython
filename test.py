@@ -92,6 +92,15 @@ def createFileTexture(fileTextureName, p2dName):
     pm.connectAttr(p2d.wrapV, tex.wrapV)
     return tex
 
+def applyFileTexture(fileTextureName):
+
+    createFileTexture('file', 'p2dOne')
+
+    filePath = rootPath + '/Textures/' + fileTextureName
+
+    mc.setAttr('file1.fileTextureName', filePath, type='string')
+    mc.connectAttr('file1.outColor', 'sphere_uber.diffuseColor', force=True)
+
 # RPRUberMaterial
 def applyRPRUberMaterial(node):
     if mc.objExists(node):
@@ -100,23 +109,16 @@ def applyRPRUberMaterial(node):
         mc.connectAttr('%s.outColor' % shd, '%s.surfaceShader' % shdSG)
         mc.sets(node, e=True, forceElement=shdSG)
 
-def applyFileTexture(node, fileTextureName):
-
-    createFileTexture('file', 'p2dOne')
-
-    filePath = rootPath + '/textures/' + fileTextureName
-
-    mc.setAttr('file.fileTextureName', filePath, type='string')
-    mc.connectAttr('file.outColor', 'sphere_uber.diffuseColor', force=True)
-
-#mel.eval('startProductionRenderRPR()');
-
-
 #---------------------------------------------------------------
 
+createIBLLight('iblback.hdr', 1000)
 
-createIBLLight('iblback.hdr')
+createIESLight('comet.ies')
+# type 1 - spot
+createPhysicalLight(1)
 
 applyRPRUberMaterial('sphere')
 
-applyFileTexture()
+applyFileTexture('texture.jpg')
+
+mel.eval('startProductionRenderRPR()');
