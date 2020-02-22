@@ -10,7 +10,7 @@ def hex_to_rgb(value):
 
 def applyRPRUberMaterial(node):
     if mc.objExists(node):
-        shd = mc.shadingNode('RPRUberMaterial', name="%s_plane" % node, asShader=True)
+        shd = mc.shadingNode('RPRUberMaterial', name="%s_uber" % node, asShader=True)
         shdSG = mc.sets(name='%sSG' % shd, empty=True, renderable=True, noSurfaceShader=True)
 
         mc.connectAttr('%s.outColor' % shd, '%s.surfaceShader' % shdSG)
@@ -60,3 +60,12 @@ def createCubScene():
 
     mc.move(-4.75, 2.5, 0, leftWall)
     mc.scale(0.5, 5, 10, leftWall)
+
+
+def createIBL():
+    light = mc.createNode( 'transform', n='RPRIBL' )
+    mc.createNode('RPRIBL', n='RPRIBLLight', p='RPRIBL')
+
+    mc.scale(1000, 1000, 1000, light)
+
+    mc.setAttr('RPRIBLLight.intensity', 0.003)
