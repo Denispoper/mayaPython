@@ -36,11 +36,27 @@ def createLight(lightType):
     mc.move(0, 10, 0, light)
     mc.rotate(-90, 0, 0, light)
 
-    mc.setAttr('RPRPhLightShape.colorPicker', 1,1,1, type='double3');
     mc.setAttr('RPRPhLightShape.lightType', lightType)
-    mc.setAttr('RPRPhLightShape.spotLightOuterConeFalloff', 100)
+    mc.setAttr('RPRPhLightShape.spotLightOuterConeFalloff', 150)
     mc.setAttr('RPRPhLightShape.spotLightInnerConeAngle', 0)
     mc.setAttr('RPRPhLightShape.luminousEfficacy', 7)
     mc.setAttr('RPRPhLightShape.lightIntensity', 6)
     mc.setAttr('RPRPhLightShape.colorMode', 0)
     mc.setAttr('RPRPhLightShape.temperature', 3500)
+
+def createCubScene():
+
+    floor = mc.polyCube(n='Floor')
+
+    mc.move(0, 0.1, 0, floor)
+    mc.scale(10, 0.2, 10, floor)
+
+    rightWall = mc.polyCube(n='RightWall')
+
+    mc.move(0, 2.5, -4.75, rightWall)
+    mc.scale(10, 5, 0.5, rightWall)
+
+    leftWall = mc.polyCube(n='LeftWall')
+
+    mc.move(-4.75, 2.5, 0, leftWall)
+    mc.scale(0.5, 5, 10, leftWall)
