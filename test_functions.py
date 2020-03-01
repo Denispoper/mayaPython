@@ -70,5 +70,3 @@ def createIBL():
 
     mc.setAttr('RPRIBLLight.intensity', 0.003)
 
-def createMainCamera():
-    mc.
